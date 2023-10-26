@@ -26,8 +26,11 @@ public class BookController {
 
 
     @GetMapping()
-    public String index(Model model) {
-        model.addAttribute("books", bookService.findAll());
+    public String index(Model model, @RequestParam(value = "page",required = false, defaultValue = "-1" ) int page,
+                        @RequestParam(value = "books_per_page", required = false, defaultValue = "-1")int booksPerPage,
+                        @RequestParam(value = "sort_by_year", required = false, defaultValue = "false") boolean sortByYear) {
+            model.addAttribute("books", bookService.findAll(page, booksPerPage,sortByYear));
+
         return "books/index";
     }
 
@@ -59,9 +62,7 @@ public class BookController {
     }
     @PostMapping("/{id}")
     public String setBook(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult, @PathVariable int id){
-        Book updatedBook = bookService.findOne(id);
-       updatedBook.setOwner(person);
-        bookService.update(id,updatedBook);
+        bookService.setBook(id,person);
         return "redirect:/books";
     }
 

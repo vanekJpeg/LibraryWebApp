@@ -3,6 +3,8 @@ package ru.library.models;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Size;
+import java.util.Date;
+
 @Entity
 @Table(name = "books")
 public class Book {
@@ -23,6 +25,17 @@ public class Book {
     @ManyToOne
     @JoinColumn(name = "person_id",referencedColumnName = "id")
     private Person owner;
+    @Column(name = "owned_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date ownedAt;
+
+    public Date getOwnedAt() {
+        return ownedAt;
+    }
+
+    public void setOwnedAt(Date ownedAt) {
+        this.ownedAt = ownedAt;
+    }
 
     public Person getOwner() {
         return owner;
