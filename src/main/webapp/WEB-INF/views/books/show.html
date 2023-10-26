@@ -5,7 +5,7 @@
     <title>Show</title>
 </head>
 <body>
-<p th:text="${book.getName() +', '+book.getAuthor()+ ', ' + book.getYear()+', '+ book.getPersonId()}">VALUE</p>
+<p th:text="${book.getName() +', '+book.getAuthor()+ ', ' + book.getYear()}">VALUE</p>
 <div th:if="${book.isFree()}">
     <form th:method="POST" th:action="@{/books/{id}(id=${book.getId()})}">
         <p>Эта книга свободна, кому назначить ее?</p>

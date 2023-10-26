@@ -1,24 +1,41 @@
 package ru.library.models;
 
+import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Size;
-
+@Entity
+@Table(name = "books")
 public class Book {
-
+    @Column(name = "id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private  Integer personId;
     @Size(min = 2, max = 50, message = "Name should be between 2 and 50 characters")
+    @Column(name = "name")
     private String name;
     @Size(min = 2, max = 50, message = "Name should be between 2 and 50 characters")
+    @Column(name = "author")
     private String author;
     @Max(value = 2024, message = "Year should be less than 2024")
+    @Column(name = "year")
     private int year;
+
+    @ManyToOne
+    @JoinColumn(name = "person_id",referencedColumnName = "id")
+    private Person owner;
+
+    public Person getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Person owner) {
+        this.owner = owner;
+    }
 
     public Book() {
     }
 
-    public Book( String name, String author,int personId, int year) {
-        this.personId = personId;
+    public Book( String name, String author, int year) {
         this.name = name;
         this.author = author;
         this.year = year;
@@ -56,14 +73,7 @@ public class Book {
         this.id = id;
     }
 
-    public Integer getPersonId() {
-        return personId;
-    }
-
-    public void setPersonId(Integer personId) {
-        this.personId = personId;
-    }
     public boolean isFree(){
-        return this.getPersonId()==0;
+        return owner == null;
     }
 }
