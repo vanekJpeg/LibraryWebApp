@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface BooksRepository extends JpaRepository<Book,Integer> {
     List<Book> findBooksByOwner(Person person);
+    List<Book> searchBooksByNameStartingWith(String keyword);
 }

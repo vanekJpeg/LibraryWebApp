@@ -29,6 +29,9 @@ public class Book {
     @Temporal(TemporalType.TIMESTAMP)
     private Date ownedAt;
 
+    @Transient
+    private boolean expired;
+
     public Date getOwnedAt() {
         return ownedAt;
     }
@@ -88,5 +91,11 @@ public class Book {
 
     public boolean isFree(){
         return owner == null;
+    }
+    public boolean isExpired(){
+        return expired;
+    }
+    public void setExpired(boolean isExpired){
+        if(isExpired) this.expired=true;
     }
 }

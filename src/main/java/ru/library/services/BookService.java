@@ -35,6 +35,9 @@ public class BookService {
             }
         }
     }
+    public List<Book> searchByName(String keyword){
+        return bookRepository.searchBooksByNameStartingWith(keyword);
+    }
     public Book findOne(int id) {
         return bookRepository.findById(id).orElse(null);
     }
@@ -63,8 +66,6 @@ public class BookService {
         book.setOwnedAt(null);
         book.setOwner(null);
     }
-    public List<Book> findBooksByOwner(Person person){
-        return bookRepository.findBooksByOwner(person);
-    }
+
 
 }
