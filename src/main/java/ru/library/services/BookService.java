@@ -11,7 +11,6 @@ import ru.library.repositories.BooksRepository;
 
 import java.util.Date;
 import java.util.List;
-
 @Service
 @Transactional(readOnly = true)
 public class BookService {
@@ -66,6 +65,4 @@ public class BookService {
         book.setOwnedAt(null);
         book.setOwner(null);
     }
-
-
 }

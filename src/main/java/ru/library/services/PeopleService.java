@@ -12,7 +12,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
 @Service
 @Transactional(readOnly = true)
 public class PeopleService {
@@ -53,6 +52,5 @@ public class PeopleService {
     public void delete(int id) {
         peopleRepository.deleteById(id);
     }
-
 }
 

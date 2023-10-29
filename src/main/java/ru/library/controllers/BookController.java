@@ -16,7 +16,6 @@ public class BookController {
     private final PeopleService peopleService;
     @Autowired
     public BookController(BookService bookService, PeopleService peopleService) {
-
         this.bookService = bookService;
         this.peopleService = peopleService;
     }
